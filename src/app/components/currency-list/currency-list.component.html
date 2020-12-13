@@ -1,0 +1,41 @@
+<br>
+<h3>Currency List</h3>
+<br>  
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col" [appSort]='currency' data-order='desc' data-name='country' >Country</th> 
+      <th scope="col" [appSort]='currency' data-order='desc' data-name='currencyDetail' >Currency</th>
+      <th scope="col">Value</th>
+      <th scope="col" style="text-align: center">
+        <a href="" [routerLink]="['/currency-add']" title="Add" style="padding-right:10px"><i class="fa fa-plus-square fa-2x" aria-hidden="true"></i></a>
+        <a (click)="ExportTOExcel()" title="Export to Excel"><i class="fa fa-file-excel-o fa-2x" aria-hidden="true"></i></a>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of currency; index as i">
+      <td> {{ i + 1}} </td>
+      <td>
+        <!--  <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px"> -->
+      {{ item.country }}
+      </td>
+      <td> {{ item.currencyDetail}}</td>
+      <td *ngIf="item.format == 1 && item.symbol == 1"> {{ value | currency: item.code: item.showCurrency: item.showCent | split: value: item.showCurrency: item.symbol }} </td>
+      <td *ngIf="item.format == 1 && item.symbol == 2"> {{ value | currency: item.code: item.showCurrency: item.showCent}} </td>
+
+      <td *ngIf="item.format == 2 && item.symbol == 1"> {{ (value | currency: item.code: item.showCurrency: item.showCent | split: value: item.showCurrency: item.symbol).replace(',','x').replace('.',',').replace('x','.') }} </td>
+      <td *ngIf="item.format == 2 && item.symbol == 2"> {{ (value | currency: item.code: item.showCurrency: item.showCent).replace(',','x').replace('.',',').replace('x','.') }} </td>
+      
+      <td style="text-align: center">
+        <a [routerLink]="['/currency-edit', item.idCurrency, item.idCountry]" style="padding-right:10px" title="Edit"><i class="fa fa-pencil-square fa-2x" aria-hidden="true"></i></a>
+        <a (click)="onDelete(item.idCurrency)" title="Delete"><i class="fa fa-minus-square fa-2x" aria-hidden="true"></i></a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-between p-2">
+    
+  </div>

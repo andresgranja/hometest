@@ -1,0 +1,69 @@
+
+<br><h3>Edit Currency Format</h3>
+<hr>
+<div class="card">
+  <div class="card-body">
+    
+<form>
+  <div class="form-row">
+    <div class="col-3">
+      <input type="text" name="country" [ngModel]="country.country" class="form-control" placeholder="Country" disabled>
+    </div>
+    <div class="col-1">
+      <input type="text" name="code" [ngModel]="country.code" class="form-control" placeholder="Code" disabled>
+    </div>
+    <div class="col-3">
+      <input type="text" name="currency" [ngModel]="country.currency" class="form-control" placeholder="Currency" disabled>
+    </div>
+    <div class="col-1">
+      <input type="text" name="symbol" [ngModel]="country.symbol" class="form-control" placeholder="Symbol" disabled>
+    </div>
+  </div>
+  <br>
+  
+  <div class="form-row">
+    <div class="col-2">
+      <label for="country">Format</label>
+      <select class="form-control" name="formats" [(ngModel)]="currencyFormat.formatCurrency">
+        <option *ngFor="let item of formats; let i=index" [value]=item.id> 
+          {{ item.format }} 
+        </option>
+      </select>
+    </div>
+    <div class="col-2">
+      <label for="">Show Cents</label>
+      <select class="form-control" name="showCents" [(ngModel)]="currencyFormat.showCents" >
+        <option *ngFor="let item of showCentsList; let i=index" [value]='item.id'> 
+          {{ item.showCents }} 
+        </option>
+      </select>
+    </div>
+    <div class="col-2">
+      <label for="">Currency shown</label>
+      <select class="form-control" name="symbolc" [(ngModel)]="currencyFormat.symbolBefore" >
+        <option *ngFor="let item of symbol; let i=index" [value]='item.id'> 
+          {{ item.symbol }} 
+        </option>
+      </select>
+    </div>
+    <div class="col-2">
+      <label for="">Show Currency</label>
+      <select class="form-control" name="shown" [(ngModel)]="currencyFormat.shownCurrency" >
+        <option *ngFor="let item of shown; let i=index" [value]='item.id'> 
+          {{ item.shownCurrency }} 
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <br>
+  <div class="form-row">
+    <div class="col-7">
+      <button [routerLink]="['/currency-list']" type="button" class="btn btn-primary" style="margin-right: 10px;"> <-Back </button>
+      <button type="button" class="btn btn-primary" (click)="editCurrency()">Edit -> </button>
+    </div>
+  </div>
+      
+</form>
+  </div>
+</div>
